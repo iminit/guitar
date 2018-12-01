@@ -16,9 +16,11 @@
                 <div class="span12">
                         <div class="alert alert-info">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                               <h4>
-                                   Guitar
-                               </h4> <strong>说明</strong> 点击数字，跟着阅读 do re mi fa so la si do.
+                               
+                                <h4>识简谱<span @click="add">-{{max}}+</span>
+                                   
+                               </h4> <strong>说明</strong> 点击并跟着阅读 
+                               <strong>do re mi fa so la si do.</strong>
                            </div>
                 </div>
                 <div class="span12 align-items-centerjustify-content-center " style="height: 100vh;">
@@ -39,6 +41,8 @@
         var app = new Vue({
             el: '#app',
             data: {
+                min: 1,
+                max: 4,
                 chord: '1234 5671',
                 chords: '12345671234567',
             },
@@ -47,7 +51,7 @@
                     this.chord =this.harf()+" "+this.harf(); 
                 },
                 random: function(){
-                    var max = 7, min = 1;
+                    var max = this.max, min = this.min;
                     return Math.floor(Math.random()*(max-min+1)+min);
                 },
                 harf: function(){
@@ -56,6 +60,9 @@
                         result += this.random();
                     }
                     return result;
+                },
+                add: function(){
+                    this.max += 1;
                 }
             }
           })
