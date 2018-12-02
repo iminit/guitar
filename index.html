@@ -17,7 +17,7 @@
                         <div class="alert alert-info">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
                                
-                                <h4>识简谱<span @click="add">-{{max}}+</span>
+                                <h4>识简谱<span @click="minus">-</span>{{max}}<span @click="add">+</span>
                                    
                                </h4> <strong>说明</strong> 点击并跟着阅读 
                                <strong>do re mi fa so la si do.</strong>
@@ -46,6 +46,9 @@
                 chord: '1234 5671',
                 chords: '12345671234567',
             },
+            mounted: function(){
+                this.change();
+            },
             methods: {
                 change: function(){
                     this.chord =this.harf()+" "+this.harf(); 
@@ -63,6 +66,11 @@
                 },
                 add: function(){
                     this.max += 1;
+                    this.change();
+                },
+                minus: function(){
+                    this.max -= 1;
+                    this.change();
                 }
             }
           })
